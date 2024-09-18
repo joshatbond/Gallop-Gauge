@@ -31,5 +31,5 @@ jobs:
           assets: |
             - path: ./dist/gallop-gauge-dp-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
               label: Datapack
-            - path: ./dist/rp-gallop-gauge-rp-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
+            - path: ./dist/gallop-gauge-rp-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
               label: Resource Pack
