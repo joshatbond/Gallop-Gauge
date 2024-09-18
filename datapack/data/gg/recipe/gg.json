@@ -18,7 +18,7 @@
     "count": 1,
     "components": {
       "minecraft:custom_model_data": 3901,
-      "minecraft:item_name": "Gallop Gauge",
+      "minecraft:item_name": "Gallop-Gauge",
       "minecraft:rarity": "rare"
     }
   }
