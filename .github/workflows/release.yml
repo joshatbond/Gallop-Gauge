@@ -1,66 +1,30 @@
-name: Create and Publish Datapack and Resourcepack Release
-
+name: Publish release
 on:
   push:
-    branches:
-      - main
-
+    tags:
+      - '*'
 jobs:
-  release:
-    name: Create and Publish Release
+  publish:
+    name: Publish release
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
-      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      # Read the version numbers from the .env file
       - name: Read version numbers from .env file
         uses: aarcangeli/load-dotenv@v1.0.0
         with:
           quiet: true
-
-      # Zip the datapack directory with the custom name
       - name: Zip datapack directory
         run: |
-          zip -r "datapack/gallop_gauge_v${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" datapack
-
-      # Zip the resourcepack directory with the custom name
+          zip -r "datapack/gallop-gauge-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" datapack
       - name: Zip resourcepack directory
         run: |
-          zip -r "resourcepack/gallop_gauge_v${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" resourcepack
+          zip -r "resourcepack/gallop-gauge-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" resourcepack
 
-      # Create a new release
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish release
+        uses: ghalactic/github-release-from-tag@v5
         with:
-          tag_name: ${{ github.sha }}
-          release_name: Release ${{ github.sha }}
-          draft: false
-          prerelease: false
-
-      # Upload the datapack zip to the release
-      - name: Upload datapack to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: './datapack/gallop_gauge_v${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip'
-          asset_name: gallop_gauge_v${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}_datapack.zip
-          asset_content_type: application/zip
-
-      # Upload the resourcepack zip to the release
-      - name: Upload resourcepack to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: './resourcepack/gallop_gauge_v${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip'
-          asset_name: gallop_gauge_v${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}_resourcepack.zip
-          asset_content_type: application/zip
+          assets: |
+            - path: ./*.zip
