@@ -15,21 +15,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Install yq to process YAML
-      - name: Install yq
-        uses: Makepad-fr/setup-yq-action@main
+      # Read the version numbers from the .env file
+      - name: Read version numbers from .env file
+        uses: aarcangeli/load-dotenv@v1.0.0
         with:
-          version: '4.6.0'
-
-      # Extract versions from .yml file
-      - name: Extract versions from version.yml
-        run: |
-          DATAPACK_VERSION=$(yq '.[] | select(.datapack)' version.yml)
-          RESOURCEPACK_VERSION=$(yq '.[] | select(.resourcepack)' version.yml)
-          MC_VERSION=$(yq '.[] | select(.minecraft)' version.yml)
-          echo "DATAPACK_VERSION=$DATAPACK_VERSION" >> $GITHUB_ENV
-          echo "RESOURCEPACK_VERSION=$RESOURCEPACK_VERSION" >> $GITHUB_ENV
-          echo "MC_VERSION=$MC_VERSION" >> $GITHUB_ENV
+          quiet: true
 
       # Zip the datapack directory with the custom name
       - name: Zip datapack directory
