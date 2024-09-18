@@ -30,8 +30,8 @@ jobs:
           checksumGenerateAssets: 'false'
           assets: |
             - path: ./dist/dp-gallop-gauge-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
-              name: gallop-gauge-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
+              name: gallop-gauge-dp-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
               label: Datapack
             - path: ./dist/rp-gallop-gauge-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
-              name: gallop-gauge-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
+              name: gallop-gauge-rp-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
               label: Resource Pack
