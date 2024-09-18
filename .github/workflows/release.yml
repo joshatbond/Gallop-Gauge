@@ -18,13 +18,13 @@ jobs:
           quiet: true
       - name: Zip datapack directory
         run: |
-          zip -r "datapack/gallop-gauge-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" datapack
+          zip -r "dist/dp-gallop-gauge-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" datapack
       - name: Zip resourcepack directory
         run: |
-          zip -r "resourcepack/gallop-gauge-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" resourcepack
+          zip -r "dist/rp-gallop-gauge-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" resourcepack
 
       - name: Publish release
         uses: ghalactic/github-release-from-tag@v5
         with:
           assets: |
-            - path: ./*.zip
+            - path: ./dist/*.zip
