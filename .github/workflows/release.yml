@@ -18,6 +18,7 @@ jobs:
           quiet: true
       - name: Zip datapack directory
         run: |
+          mkdir -p dist
           zip -r "dist/dp-gallop-gauge-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip" datapack
       - name: Zip resourcepack directory
         run: |
