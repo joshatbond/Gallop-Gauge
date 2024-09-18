@@ -27,5 +27,11 @@ jobs:
       - name: Publish release
         uses: ghalactic/github-release-from-tag@v5
         with:
+          checksumGenerateAssets: 'false'
           assets: |
-            - path: ./dist/*.zip
+            - path: ./dist/dp-gallop-gauge-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
+              name: gallop-gauge-${{ env.DATAPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
+              label: Datapack
+            - path: ./dist/rp-gallop-gauge-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
+              name: gallop-gauge-${{ env.RESOURCEPACK_VERSION }}_mc_v${{ env.MC_VERSION }}.zip
+              label: Resource Pack
