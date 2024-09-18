@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [" l ", "grg", " g "],
+  "key": {
+    "g": {
+      "item": "minecraft:gold_nugget"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "l": {
+      "item": "minecraft:lightning_rod"
+    }
+  },
+  "result": {
+    "id": "minecraft:iron_nugget",
+    "count": 1,
+    "components": {
+      "minecraft:custom_model_data": 3901,
+      "minecraft:item_name": "Gallop Gauge",
+      "minecraft:rarity": "rare"
+    }
+  }
+}
