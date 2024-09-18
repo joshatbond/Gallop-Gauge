@@ -24,9 +24,9 @@ jobs:
       # Extract versions from .yml file
       - name: Extract versions from version.yml
         run: |
-          DATAPACK_VERSION=$(yq '.datapack' version.yml)
-          RESOURCEPACK_VERSION=$(yq '.resourcepack' version.yml)
-          MC_VERSION=$(yq '.minecraft' version.yml)
+          DATAPACK_VERSION=$(yq '.[] | select(.datapack)' version.yml)
+          RESOURCEPACK_VERSION=$(yq '.[] | select(.resourcepack)' version.yml)
+          MC_VERSION=$(yq '.[] | select(.minecraft)' version.yml)
           echo "DATAPACK_VERSION=$DATAPACK_VERSION" >> $GITHUB_ENV
           echo "RESOURCEPACK_VERSION=$RESOURCEPACK_VERSION" >> $GITHUB_ENV
           echo "MC_VERSION=$MC_VERSION" >> $GITHUB_ENV
